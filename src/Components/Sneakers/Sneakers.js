@@ -1,7 +1,7 @@
 import React from 'react'
 import SearchBar from './SearchBar'
 import styled from 'styled-components'
-import SneakersList from './SkeakersList'
+import SkeakersListItem from './SkeakersListItem'
 import { ProductsContext } from '../../ProductsContext'
 import useMedia from '../Hooks/useMedia'
 
@@ -34,14 +34,18 @@ const Sneakers = () => {
         placeholder='Search for your sneaker'
       />
       <ul>
-        {loading ? <p>Loading...</p> : products.map(product => (
-            <SneakersList 
-              key={product.id}
-              id={product.id}
-              thumb={product.thumbnailURL}
-              description={product.description}
-            />
-          ))}
+        {loading ? <p>Loading...</p> : (
+          products.map(({ id, thumbnailURL, description, currency, price}) => {
+            return <SkeakersListItem 
+                      key={id}
+                      id={id}
+                      thumb={thumbnailURL}
+                      description={description}
+                      currency={currency}
+                      price={price}
+                    />
+          }
+        ))}
       </ul>
     </Section>
   )

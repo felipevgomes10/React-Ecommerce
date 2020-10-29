@@ -35,6 +35,31 @@ const ButtonBar = styled.button`
   & > svg {
     height: 100%;
     width: 100%;
+    transform-origin: right;
+    
+    & > path {
+      transition: .6s;
+    }
+
+    &:hover > path {
+      fill: #333;
+    }
+  }
+
+  &:hover svg {
+    animation: shake .3s infinite linear;
+  }
+
+  @keyframes shake {
+    0% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(-2deg);
+    }
+    100% {
+      transform: rotate(2deg);
+    }
   }
 `
 

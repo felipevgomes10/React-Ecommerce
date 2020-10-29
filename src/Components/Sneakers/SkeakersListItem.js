@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Button from '../Helpers/Button'
 import Select from '../Helpers/Select'
 
 const Card = styled.div`
@@ -19,6 +20,7 @@ const Description = styled.div`
   grid-template-rows: repeat(4, 1fr);
   justify-items: center;
   align-items: center;
+  padding: 0 1.5rem 1.5rem 1.5rem;
 
   & h3 {
     font-family: 'Open Sans', sans-serif;
@@ -37,12 +39,23 @@ const Description = styled.div`
       margin-right: 8px;
     }
   }
+
+  & h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 21px;
+    grid-column: span 2;
+  }
+
+  & button {
+    grid-column: span 2;
+  }
 `
 
 const sizeOptions = ['41', '37', '50'];
 const quantity = ['1', '2', '3', '4', '5'];
 
-const SkeakersList = ({ thumb, description, currency, price, id, label, options }) => {
+const SkeakersListItem = ({ thumb, description, currency, price, id }) => {
 
   return (
     <li>
@@ -60,10 +73,12 @@ const SkeakersList = ({ thumb, description, currency, price, id, label, options 
             label={'Quantity'}
             options={quantity}
           />
+          <h2>{`${currency} ${price}`}</h2>
+          <Button width='100%' height='100%'>Add to cart</Button>
         </Description>
       </Card>
     </li>
   )
 }
 
-export default SkeakersList
+export default SkeakersListItem
