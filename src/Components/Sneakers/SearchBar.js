@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as SearchButton } from '../../Assets/search.svg'
+import { ProductsContext } from '../../ProductsContext'
 
 const Container = styled.div`
   display: flex;
@@ -21,6 +22,7 @@ const Bar = styled.input`
   flex: 1;
   text-align: center;
   margin-right: 4.5rem;
+  text-transform: capitalize;
 `
 const ButtonBar = styled.button`
   outline: none;
@@ -63,15 +65,24 @@ const ButtonBar = styled.button`
   }
 `
 
-const SearchBar = ({ type, id, placeholder }) => {
+const SearchBar = ({ type, id, placeholder, setSearched }) => {
 
   const [value, setValue] = React.useState('');
+  const { products, setProducts } = React.useContext(ProductsContext);
 
   const handleChange = ({ target }) => setValue(target.value);
 
+  const handleClick = () => {
+    const filteredProduct = products.filter(({ price, color }) => {
+      return value === price || value === color;
+    });
+    setProducts(filteredProduct);
+    setSearched(true);
+  }
+
   return (
     <Container>
-      <ButtonBar><SearchButton /></ButtonBar>
+      <ButtonBar onClick={handleClick}><SearchButton /></ButtonBar>
       <Bar 
         type={type} 
         id={id}

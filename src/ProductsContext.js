@@ -35,7 +35,7 @@ export const ProductsStorage = ({ children }) => {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{products, loading, error}}>
+    <ProductsContext.Provider value={{products, setProducts, loading, error}}>
       {children}
     </ProductsContext.Provider>
   )
