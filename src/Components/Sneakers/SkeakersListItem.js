@@ -74,7 +74,16 @@ const SkeakersListItem = ({ thumb, description, currency, price, id }) => {
             options={quantity}
           />
           <h2>{`${currency} ${price}`}</h2>
-          <Button width='100%' height='100%'>Add to cart</Button>
+          <Button 
+            width='100%' 
+            height='100%' 
+            border='#92ad8c' 
+            shadow='#333' 
+            background=' #6B8067'
+            color='#FFFFFF'
+          >
+            Add to cart
+          </Button>
         </Description>
       </Card>
     </li>
