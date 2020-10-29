@@ -4,7 +4,7 @@ export const ProductsContext = React.createContext();
 
 export const ProductsStorage = ({ children }) => {
 
-  const [products, setProducts] = React.useState(null);
+  const [products, setProducts] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
@@ -28,7 +28,7 @@ export const ProductsStorage = ({ children }) => {
         setError(err.message);
       } finally {
         setLoading(false);
-        setProducts(json);
+        setProducts(json.results);
       }
     }
     fetchProductsFunction();

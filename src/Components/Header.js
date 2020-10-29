@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import userImg from '../Assets/user.jpg'
+import UserImg from '../Assets/user.jpg'
 
 const HeaderContainer = styled.header`
   grid-row: 1 / 2;
@@ -24,7 +24,7 @@ const UserPhoto = styled.div`
   border-radius: 50%;
   width: 34.81px;
   height: 35.21px;
-  background: url('${userImg}') no-repeat center center;
+  background: url('${UserImg}') no-repeat center center;
   background-size: cover;
 `
 const Button = styled.button`
