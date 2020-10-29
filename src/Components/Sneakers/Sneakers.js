@@ -31,10 +31,14 @@ const Section = styled.section`
 
 const Sneakers = () => {
 
-  const { products, setProducts, loading } = React.useContext(ProductsContext);
+  const { products, setProducts, loading, setBuying } = React.useContext(ProductsContext);
   const [searched, setSearched] = React.useState(false);
   const match = useMedia('(max-width: 900px)');
   const { request } = useFetch();
+
+  React.useEffect(() => {
+    setBuying(false);
+  }, [setBuying]);
 
   const productsUrl = 'https://voliveira.s3-sa-east-1.amazonaws.com/sneakers/index.json';
 
@@ -57,7 +61,8 @@ const Sneakers = () => {
       >
         Show All
       </Button>}
-      <SearchBar 
+      <SearchBar
+        searched={searched}
         type='text' 
         id='searchBar' 
         placeholder='Search for your sneaker'

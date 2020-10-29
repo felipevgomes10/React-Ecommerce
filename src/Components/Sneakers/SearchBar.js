@@ -65,7 +65,7 @@ const ButtonBar = styled.button`
   }
 `
 
-const SearchBar = ({ type, id, placeholder, setSearched }) => {
+const SearchBar = ({ type, id, placeholder, setSearched, searched }) => {
 
   const [value, setValue] = React.useState('');
   const { products, setProducts } = React.useContext(ProductsContext);
@@ -79,6 +79,10 @@ const SearchBar = ({ type, id, placeholder, setSearched }) => {
     setProducts(filteredProduct);
     setSearched(true);
   }
+
+  React.useEffect(() => {
+    if (searched === false) setValue('');
+  }, [searched]);
 
   return (
     <Container>

@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../Helpers/Button'
+import Image from '../Helpers/Image'
 import Select from '../Helpers/Select'
 
 const Card = styled.div`
@@ -10,9 +12,6 @@ const Card = styled.div`
   height: 373px;
   background: #FFFFFF;
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.05);
-`
-const Thumb = styled.img`
-  grid-row: 1 / 2;
 `
 const Description = styled.div`
   grid-row: 2 / 3;
@@ -47,8 +46,13 @@ const Description = styled.div`
     grid-column: span 2;
   }
 
-  & button {
+  & a {
     grid-column: span 2;
+    width: 100%;
+    height: 100%;
+    background: #6B8067;
+    color:#FFFFFF;
+    border-radius: 4.50483px;
   }
 `
 
@@ -60,7 +64,7 @@ const SkeakersListItem = ({ thumb, description, currency, price, id }) => {
   return (
     <li>
       <Card>
-        <Thumb src={thumb} />
+        <Image alt={description} src={thumb} />
         <Description>
           <h3>{description}</h3>
           <Select 
@@ -74,16 +78,18 @@ const SkeakersListItem = ({ thumb, description, currency, price, id }) => {
             options={quantity}
           />
           <h2>{`${currency} ${price}`}</h2>
-          <Button 
-            width='100%' 
-            height='100%' 
-            border='#92ad8c' 
-            shadow='#333' 
-            background=' #6B8067'
-            color='#FFFFFF'
-          >
-            Add to cart
-          </Button>
+          <Link to={`/checkout/${id}`}>
+            <Button 
+              width='100%' 
+              height='100%' 
+              border='#92ad8c' 
+              shadow='#333' 
+              background=' #6B8067'
+              color='#FFFFFF'
+            >
+              Add to cart
+            </Button>
+          </Link>
         </Description>
       </Card>
     </li>
