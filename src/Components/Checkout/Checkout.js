@@ -47,8 +47,8 @@ const SectionCart = styled.section`
 
 const Checkout = () => {
 
-  const { setBuying } = React.useContext(ProductsContext);
-  const [steps, setSteps] = React.useState(1);
+  const { setBuying, steps } = React.useContext(ProductsContext);
+  
   const BreadCrumbsRef = React.createRef();
   
   React.useEffect(() => {
@@ -76,7 +76,7 @@ const Checkout = () => {
     <SectionCart>
       <BreadCrumbs ref={BreadCrumbsRef} />
       <Photo />
-      <Payment steps={steps} setSteps={setSteps} />
+      <Payment />
     </SectionCart>
   )
 }

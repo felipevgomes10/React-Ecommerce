@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { ProductsContext } from '../../ProductsContext'
 import Button from '../Helpers/Button'
 import Image from '../Helpers/Image'
 import Select from '../Helpers/Select'
@@ -46,7 +47,7 @@ const Description = styled.div`
     grid-column: span 2;
   }
 
-  & a {
+  & button {
     grid-column: span 2;
     width: 100%;
     height: 100%;
@@ -55,11 +56,28 @@ const Description = styled.div`
     border-radius: 4.50483px;
   }
 `
+const Warning = styled.small`
+  color: #f56358;
+  opacity: ${({ warning }) => warning ? 1 : 0};
+`
 
 const sizeOptions = ['41', '37', '50'];
 const quantity = ['1', '2', '3', '4', '5'];
 
 const SkeakersListItem = ({ thumb, description, currency, price, id }) => {
+
+  const { setSteps, order } = React.useContext(ProductsContext);
+  const [ warning, setWarning ] = React.useState(false);
+  const navigate = useNavigate();
+
+  const handleSteps = () => {
+    if (order.size && order.quantity) {
+      setSteps(1);
+      navigate(`/checkout/${id}`)
+    } else {
+      setWarning(true);
+    }
+  }
 
   return (
     <li>
@@ -69,16 +87,19 @@ const SkeakersListItem = ({ thumb, description, currency, price, id }) => {
           <h3>{description}</h3>
           <Select 
             id={id}
-            label={'Size'}
+            label='Size'
+            name='size'
             options={sizeOptions}
+            setWarning={setWarning}
           />
           <Select 
             id={id + 1}
-            label={'Quantity'}
+            label='Quantity'
+            name='quantity'
             options={quantity}
+            setWarning={setWarning}
           />
           <h2>{`${currency} ${price}`}</h2>
-          <Link to={`/checkout/${id}`}>
             <Button 
               width='100%' 
               height='100%' 
@@ -86,10 +107,11 @@ const SkeakersListItem = ({ thumb, description, currency, price, id }) => {
               shadow='#333' 
               background=' #6B8067'
               color='#FFFFFF'
+              onClick={handleSteps}
             >
               Add to cart
             </Button>
-          </Link>
+            <Warning warning={warning}>Fill in the fields</Warning>
         </Description>
       </Card>
     </li>
