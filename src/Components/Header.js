@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import UserImg from '../Assets/user.jpg'
 import { ProductsContext } from '../ProductsContext'
@@ -76,12 +76,24 @@ const Header = () => {
 
   const { buying } = React.useContext(ProductsContext);
   const navigate = useNavigate();
+  const [headerText, setHeaderText] = React.useState(null)
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    
+    if(pathname.includes('/checkout/')) {
+      setHeaderText('Checkout');
+    } else {
+      setHeaderText(null);
+    }
+
+  }, [pathname]);
 
   return (
     <HeaderContainer>
       <Nav>
-        <Button onClick={() => navigate(-1)} buying={buying}><Arrow /> Back</Button>
-        <Link to='/'><Text>Sneakers</Text></Link>
+        <Button onClick={() => navigate('/')} buying={buying}><Arrow /> Back</Button>
+        {headerText ? <Text>{headerText}</Text> : <Link to='/'><Text>Sneakers</Text></Link>}
         <UserPhoto />
       </Nav>
     </HeaderContainer>

@@ -31,7 +31,12 @@ const Section = styled.section`
 
 const Sneakers = () => {
 
-  const { products, setProducts, loading, setBuying } = React.useContext(ProductsContext);
+  const { 
+    products, 
+    setProducts, 
+    loading, 
+    setBuying,
+   } = React.useContext(ProductsContext);
   const [searched, setSearched] = React.useState(false);
   const match = useMedia('(max-width: 900px)');
   const { request } = useFetch();

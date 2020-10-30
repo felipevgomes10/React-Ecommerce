@@ -2,17 +2,46 @@ import React from 'react'
 import styled from 'styled-components'
 import { ProductsContext } from '../../ProductsContext'
 import BreadCrumbs from '../Helpers/BreadCrumbs'
+import Payment from './Payment'
+import Photo from './Photo'
 
 const SectionCart = styled.section`
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: 40% 1fr;
+  grid-template-rows: auto min-content;
   justify-content: center;
   align-items: center;
+  column-gap: 10rem;
 
-  & div:first-child {
-    grid-row: 1 /2;
+  & > div:first-of-type {
     grid-column: span 2;
+    margin-top: 6.6rem;
+    margin-bottom: 8.6rem;
+  }
+
+  & > section:first-of-type {
+    height: 100%;
+    padding: 0 0 5rem 5rem;
+
+    & div {
+      height: 100%;
+      border-radius: 10.8766px;
+      overflow: hidden;
+    }
+
+    & * {
+      width: 100%;
+      height: 63rem;
+      object-fit: cover;
+    }
+  }
+
+  & > section:nth-of-type(2) {
+    width: 100%;
+    height: 63rem;
+    justify-self: center;
+    align-self: stretch;
+    margin-right: 9rem;
   }
 `
 
@@ -43,19 +72,11 @@ const Checkout = () => {
 
   }, [steps, BreadCrumbsRef]);
 
-  const handleNext = () => {
-    if (steps < 2) setSteps(steps + 1);
-  }
-
-  const handlePrev = () => {
-    if (steps === 2 ) setSteps(steps - 1);
-  }
-
   return (
     <SectionCart>
-      <BreadCrumbs ref={BreadCrumbsRef}/>
-      <button onClick={handleNext} style={{gridRow: '2/3', gridColumn: '1/2'}}>Continuar</button>
-      <button onClick={handlePrev} style={{gridRow: '2/3', gridColumn: '2/3'}}>Voltar</button>
+      <BreadCrumbs ref={BreadCrumbsRef} />
+      <Photo />
+      <Payment steps={steps} setSteps={setSteps} />
     </SectionCart>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ProductsContext } from '../../ProductsContext'
 
 const SelectArea = styled.select`
   border: 0.900966px solid #E8E8E8;
@@ -25,9 +26,13 @@ const Label = styled.label`
 
 const Select = ({ options, id, name, label }) => {
 
-  const [size, setSize] = React.useState('');
+  const [value, setValue] = React.useState('');
+  const { order, setOrder } = React.useContext(ProductsContext);
 
-  const handleChange = ({ target } ) => setSize(target.value);
+  const handleChange = ({ target } ) => {
+    setValue(target.value);
+    setOrder({...order, [label.toLowerCase()]: target.value});
+  };
 
   return (
     <div>
@@ -35,7 +40,7 @@ const Select = ({ options, id, name, label }) => {
       <SelectArea 
         id={id} 
         name={id} 
-        value={size} 
+        value={value} 
         onChange={handleChange}
       >
         <option disabled value=''>Pick</option>

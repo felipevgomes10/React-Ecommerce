@@ -21,7 +21,7 @@ const App = () => {
           <Header />
           <Routes>
             <Route path='/' element={<Sneakers />} />
-            <Route path='/checkout/:id' element={<Checkout />} />
+            <Route path='/checkout/:id/*' element={<Checkout />} />
           </Routes>
         </BrowserRouter>
       </ProductsStorage>
