@@ -8,6 +8,7 @@ export const ProductsStorage = ({ children }) => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
   const [buying, setBuying] = React.useState(false);
+  const [steps, setSteps] = React.useState(0);
   const [order, setOrder] = React.useState({
     name: '',
     quantity: '',
@@ -15,6 +16,7 @@ export const ProductsStorage = ({ children }) => {
     size: '',
     id: '',
     price: '',
+    method: '',
   });
 
   const productsUrl = 'https://voliveira.s3-sa-east-1.amazonaws.com/sneakers/index.json';
@@ -44,7 +46,7 @@ export const ProductsStorage = ({ children }) => {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{products, setProducts, loading, error, buying, setBuying, order, setOrder}}>
+    <ProductsContext.Provider value={{products, setProducts, loading, error, buying, setBuying, order, setOrder, steps, setSteps}}>
       {children}
     </ProductsContext.Provider>
   )

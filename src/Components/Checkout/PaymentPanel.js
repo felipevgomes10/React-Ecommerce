@@ -31,8 +31,14 @@ const MethodHeader = styled.h2`
 
 const PaymentPanel = () => {
 
-  const [paymentMethod, setPaymentMethod] = React.useState('onlineBanking');
-  const { order } = React.useContext(ProductsContext);
+  const [paymentMethod, setPaymentMethod] = React.useState('Online Banking');
+  const { order, setOrder } = React.useContext(ProductsContext);
+
+  React.useEffect(() => {
+    setOrder((order) => {
+      return {...order, method: paymentMethod}
+    });
+  }, [paymentMethod, setOrder]);
 
   const choosePayment = ({ target }) => {
     const paymentType = target.dataset.type;
@@ -40,7 +46,7 @@ const PaymentPanel = () => {
   }
 
   const payOrder = () => {
-    if (paymentMethod === 'onlineBanking') {
+    if (paymentMethod === 'Online Banking') {
       establishConnection('felipe.vgomes10@gmail.com', order.price);
     }
   }
@@ -52,27 +58,27 @@ const PaymentPanel = () => {
         <PaymentMethod
           onFocus={choosePayment}
           onClick={choosePayment} 
-          data='onlineBanking' 
+          data='Online Banking' 
           src={Banks}
-          style={{border: paymentMethod === 'onlineBanking' && '1px solid #5DAC50'}}
+          style={{border: paymentMethod === 'Online Banking' && '1px solid #5DAC50'}}
         >
           Online Banking
         </PaymentMethod>
         <PaymentMethod
           onFocus={choosePayment}
           onClick={choosePayment} 
-          data='creditCards' 
+          data='Credit Cards' 
           src={CreditCards}
-          style={{border: paymentMethod === 'creditCards' && '1px solid #5DAC50'}}
+          style={{border: paymentMethod === 'Credit Cards' && '1px solid #5DAC50'}}
         >
           Card Payment
         </PaymentMethod>
         <PaymentMethod
           onFocus={choosePayment}
           onClick={choosePayment} 
-          data='ApplePay' 
+          data='Apple Pay' 
           src={ApplePay}
-          style={{border: paymentMethod === 'ApplePay' && '1px solid #5DAC50'}}
+          style={{border: paymentMethod === 'Apple Pay' && '1px solid #5DAC50'}}
         >
           Apple Pay
         </PaymentMethod>

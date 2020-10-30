@@ -74,26 +74,47 @@ const Button = styled.button`
 
 const Header = () => {
 
-  const { buying } = React.useContext(ProductsContext);
+  const { buying, steps, setSteps, setOrder } = React.useContext(ProductsContext);
   const navigate = useNavigate();
   const [headerText, setHeaderText] = React.useState(null)
-  const { pathname } = useLocation();
 
   React.useEffect(() => {
     
-    if(pathname.includes('/checkout/')) {
+    if (steps === 0) {
+      setHeaderText('Sneakers')
+    }
+    else if(steps === 1) {
       setHeaderText('Checkout');
     } else {
-      setHeaderText(null);
+      setHeaderText('Review and Confirmation');
     }
 
-  }, [pathname]);
+  }, [steps]);
+
+  const handleNavigation = () => {
+    setSteps(steps - 1);
+    if (steps === 1) {
+      navigate('/');
+      setOrder({
+        name: '',
+        quantity: '',
+        color: '',
+        size: '',
+        id: '',
+        price: '',
+        method: '',
+      });
+    }
+    else {
+      navigate(-1);
+    }
+  }
 
   return (
     <HeaderContainer>
       <Nav>
-        <Button onClick={() => navigate('/')} buying={buying}><Arrow /> Back</Button>
-        {headerText ? <Text>{headerText}</Text> : <Link to='/'><Text>Sneakers</Text></Link>}
+        <Button onClick={handleNavigation} buying={buying}><Arrow /> Back</Button>
+        <Text>{headerText}</Text>
         <UserPhoto />
       </Nav>
     </HeaderContainer>

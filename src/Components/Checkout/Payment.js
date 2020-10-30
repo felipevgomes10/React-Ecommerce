@@ -68,12 +68,13 @@ const Details = styled.small`
   margin-top: .7rem;
 `
 
-const Payment = ({ steps, setSteps }) => {
+const Payment = () => {
 
-  const { order } = React.useContext(ProductsContext);
+  const { order, steps, setSteps } = React.useContext(ProductsContext);
 
   React.useEffect(() => {
-    window.PayWithMyBank.addPanelListener(function(command, event) {
+
+    const handleConfirmation = (command, event) => {
       if (command === 'event' && event.type === 'new_location') {
         if (event.data.indexOf('#success') === 0) {
           alert('success!');
@@ -84,7 +85,13 @@ const Payment = ({ steps, setSteps }) => {
         }
         return false;
       }
-    });
+    }
+
+    window.PayWithMyBank.addPanelListener(handleConfirmation);
+
+    return () => {
+      window.PayWithMyBank.removePanelListener(handleConfirmation);
+    }
   }, [setSteps]);
 
   if (steps === 2) return <ConfirmationPanel />
@@ -93,8 +100,8 @@ const Payment = ({ steps, setSteps }) => {
       <Container rows='1 / 2' columns='1 / 2'>
         <Text>Cart Total</Text>
         <ProductName>{order.name}</ProductName>
-        <Details>{`X ${order.quantity} ${order.color} Size ${order.size}`}</Details>
-        <Details>{`Item #${order.id}`}</Details>
+        <Details>X {order.quantity} {order.color} Size {order.size}</Details>
+        <Details>Item #{order.id}</Details>
       </Container>
       <Container rows='1 / 2' columns='2 / 3'>
         <Text>Delivery details</Text>

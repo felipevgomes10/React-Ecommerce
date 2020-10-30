@@ -24,7 +24,7 @@ const Label = styled.label`
   color: #808080;
 `
 
-const Select = ({ options, id, name, label }) => {
+const Select = ({ options, id, name, label, setWarning }) => {
 
   const [value, setValue] = React.useState('');
   const { order, setOrder } = React.useContext(ProductsContext);
@@ -32,6 +32,7 @@ const Select = ({ options, id, name, label }) => {
   const handleChange = ({ target } ) => {
     setValue(target.value);
     setOrder({...order, [label.toLowerCase()]: target.value});
+    setWarning(false);
   };
 
   return (
@@ -39,7 +40,7 @@ const Select = ({ options, id, name, label }) => {
       <Label id={id} name={name}>{label}</Label>
       <SelectArea 
         id={id} 
-        name={id} 
+        name={name} 
         value={value} 
         onChange={handleChange}
       >
