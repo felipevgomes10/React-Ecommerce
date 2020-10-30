@@ -25,9 +25,23 @@ const CTA = styled.button`
   &:active {
     transform: initial;
   }
+
+  &:disabled {
+    background: #aed1a7;
+  }
 `
 
-const Button = ({ children, width, height, background, color, shadow, border, onClick }) => {
+const Button = ({
+   children,
+   width,
+   height,
+   background,
+   color,
+   shadow,
+   border,
+   onClick,
+   ...props 
+}) => {
   return (
     <CTA 
       width={width} 
@@ -37,6 +51,7 @@ const Button = ({ children, width, height, background, color, shadow, border, on
       shadow={shadow} 
       border={border}
       onClick={onClick}
+      {...props}
     >
       {children}
     </CTA>
