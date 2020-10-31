@@ -41,8 +41,22 @@ const ConfirmationPanel = () => {
       </InfoContainer>
       <InfoContainer columns='1 / 2' rowGap='0'>
         <ProductText font='1.6rem' columns='1 / 2' align='end'>Total cost</ProductText>
-        <ProductText font='1.6rem' color='#A5A5A5' columns='1 / 2' align='top'>Delivery included</ProductText>
-        <ProductText font='4.5rem' columns='2 / 3' rows='1 / 3' align='center'>$ {order.price}</ProductText>
+        <ProductText 
+          font='1.6rem' 
+          color='#A5A5A5' 
+          columns='1 / 2' 
+          align='top'
+        >
+          Delivery included
+        </ProductText>
+        <ProductText 
+          font='4.5rem' 
+          columns='2 / 3' 
+          rows='1 / 3' 
+          align='center'
+        >
+          $ {order.price}
+        </ProductText>
       </InfoContainer>
       <Button 
         width='100%' 

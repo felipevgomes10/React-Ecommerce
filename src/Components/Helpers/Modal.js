@@ -6,6 +6,7 @@ const Modal = ({ text, onClick }) => {
   return (
     <Wrapper onClick={onClick}>
       <ModalWarning>
+        <div></div>
         <ModalText>{text}</ModalText>
       </ModalWarning>
     </Wrapper>

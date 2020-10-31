@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const HeaderContainer = styled.header`
   grid-row: 1 / 2;
@@ -33,6 +33,18 @@ export const UserPhoto = styled.div`
   background: ${({ img }) => `url('${img}') no-repeat center center`};
   background-size: cover;
 `
+
+const moveLeft = keyframes`
+  0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(3px);
+    }
+    100% {
+      transform: translateX(-3px);
+    }
+`
 export const Button = styled.button`
   opacity: ${({ buying }) => buying ? '1' : '0' };
   pointer-events: ${({ buying }) => buying ? 'initial' : 'none'};
@@ -63,19 +75,7 @@ export const Button = styled.button`
   }
 
   &:hover svg {
-    animation: moveLeft .3s forwards;
-  }
-
-  @keyframes moveLeft {
-    0% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(3px);
-    }
-    100% {
-      transform: translateX(-3px);
-    }
+    animation: ${moveLeft} .3s forwards;
   }
 
   &:hover {
