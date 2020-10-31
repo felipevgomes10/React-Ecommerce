@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -28,6 +28,18 @@ export const Bar = styled.input`
 
   &::-webkit-input-placeholder {
     text-align: center;
+  }
+`
+
+const shake = keyframes`
+  0% {
+      transform: rotate(0);
+    }
+  50% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(2deg);
   }
 `
 export const ButtonBar = styled.button`
@@ -60,18 +72,6 @@ export const ButtonBar = styled.button`
   }
 
   &:hover svg {
-    animation: shake .3s infinite linear;
-  }
-
-  @keyframes shake {
-    0% {
-      transform: rotate(0);
-    }
-    50% {
-      transform: rotate(-2deg);
-    }
-    100% {
-      transform: rotate(2deg);
-    }
+    animation: ${shake} .3s infinite linear;
   }
 `

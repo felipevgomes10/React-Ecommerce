@@ -7,8 +7,13 @@ import useMedia from '../Hooks/useMedia'
 import Button from '../Helpers/Button'
 import useFetch from '../Hooks/useFetch'
 import { Helmet } from 'react-helmet'
+import Loading from '../Helpers/Loading'
 
 const Sneakers = () => {
+
+  React.useEffect(() => {
+    window.localStorage.removeItem('savedOrder');
+  }, []);
 
   const { 
     products, 
@@ -57,7 +62,7 @@ const Sneakers = () => {
         setSearched={setSearched}
       />
       <ul>
-        {loading ? <p>Loading...</p> : (
+        {loading ? <Loading /> : (
           products.map(({ id, thumbnailURL, description, currency, price}) => {
             return <SkeakersListItem 
                       key={id}

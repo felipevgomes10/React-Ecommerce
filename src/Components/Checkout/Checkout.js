@@ -22,7 +22,9 @@ const Checkout = () => {
           setSteps(2);
           setShowModal(true);
           setMessage('Your transaction was successful!');
+          window.localStorage.removeItem('savedOrder');
         } else {
+          setSteps(1);
           setShowModal(true);
           setMessage('Your transaction failed!');
         }
