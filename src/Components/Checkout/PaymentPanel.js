@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import { Container, MethodHeader } from './PaymentPanelStyles'
 import PaymentMethod from './PaymentMethod'
 import Banks from '../../Assets/banks.png'
 import CreditCards from '../../Assets/credit-cards.png'
@@ -7,27 +7,6 @@ import ApplePay from '../../Assets/apple-pay.png'
 import Button from '../Helpers/Button'
 import { ProductsContext } from '../../ProductsContext'
 import { establishConnection } from './establishConnection'
-
-const Container = styled.div`
-  grid-row: ${({ rows }) => rows };
-  grid-column: ${({ columns }) => columns };
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  font-family: Open Sans;
-  color: #000000;
-
-  & button[data-type]:not(:last-child) {
-    margin-bottom: 1.5rem;
-  }
-`
-const MethodHeader = styled.h2`
-  font-size: 2.2rem;
-  font-weight: 400;
-  margin-top: 2rem;
-  margin-bottom: 2.1rem;
-`
 
 const PaymentPanel = () => {
 
