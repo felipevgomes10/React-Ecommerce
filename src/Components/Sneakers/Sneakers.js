@@ -1,33 +1,12 @@
 import React from 'react'
+import { Section } from './SneakersStyles'
 import SearchBar from './SearchBar'
-import styled from 'styled-components'
 import SkeakersListItem from './SkeakersListItem'
 import { ProductsContext } from '../../ProductsContext'
 import useMedia from '../Hooks/useMedia'
 import Button from '../Helpers/Button'
 import useFetch from '../Hooks/useFetch'
-
-const Section = styled.section`
-  display: grid;
-  grid-template-rows: auto 1fr;
-
-  & ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 297.32px);
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    gap: ${({ match }) => match ? '4rem' : '8.4rem'};
-    width: 80%;
-    margin: 57px auto;
-  }
-
-  & > button {
-    position: absolute;
-    top: 252px;
-    left: 146px;
-  }
-`
+import { Helmet } from 'react-helmet'
 
 const Sneakers = () => {
 
@@ -36,7 +15,7 @@ const Sneakers = () => {
     setProducts, 
     loading, 
     setBuying,
-   } = React.useContext(ProductsContext);
+  } = React.useContext(ProductsContext);
   const [searched, setSearched] = React.useState(false);
   const match = useMedia('(max-width: 900px)');
   const { request } = useFetch();
@@ -55,6 +34,10 @@ const Sneakers = () => {
 
   return (
     <Section match={match}>
+      <Helmet>
+        <title>Sneakers | Buy the best sneakers here</title>
+        <meta name='description' content='you will find the most beautiful sneakers here'/>
+      </Helmet>
       {searched && <Button
         width='90px' 
         height='30px' 

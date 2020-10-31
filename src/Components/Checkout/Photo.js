@@ -1,13 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
+import { SectionPhoto } from './PhotoStyles'
 import { useParams } from 'react-router-dom';
 import { ProductsContext } from '../../ProductsContext'
 import Image from '../Helpers/Image';
-
-const SectionPhoto = styled.section`
-  grid-row: 2 / 3;
-  grid-column: 1 / 2;
-`
 
 const Photo = () => {
 

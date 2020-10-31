@@ -1,55 +1,45 @@
 import React from 'react'
-import styled from 'styled-components'
+import { SectionCart } from './CheckoutStyles'
 import { ProductsContext } from '../../ProductsContext'
 import BreadCrumbs from '../Helpers/BreadCrumbs'
 import Payment from './Payment'
 import Photo from './Photo'
-
-const SectionCart = styled.section`
-  display: grid;
-  grid-template-columns: 40% 1fr;
-  grid-template-rows: auto min-content;
-  justify-content: center;
-  align-items: center;
-  column-gap: 10rem;
-
-  & > div:first-of-type {
-    grid-column: span 2;
-    margin-top: 6.6rem;
-    margin-bottom: 8.6rem;
-  }
-
-  & > section:first-of-type {
-    height: 100%;
-    padding: 0 0 5rem 5rem;
-
-    & div {
-      height: 100%;
-      border-radius: 10.8766px;
-      overflow: hidden;
-    }
-
-    & * {
-      width: 100%;
-      height: 63rem;
-      object-fit: cover;
-    }
-  }
-
-  & > section:nth-of-type(2) {
-    width: 100%;
-    height: 63rem;
-    justify-self: center;
-    align-self: stretch;
-    margin-right: 9rem;
-  }
-`
+import Modal from '../Helpers/Modal'
+import { Helmet } from 'react-helmet'
 
 const Checkout = () => {
 
-  const { setBuying, steps } = React.useContext(ProductsContext);
-  
+  const { setBuying, steps, setSteps } = React.useContext(ProductsContext);
   const BreadCrumbsRef = React.createRef();
+  const [showModal, setShowModal] = React.useState(false);
+  const [message, setMessage] = React.useState('');
+
+  React.useEffect(() => {
+
+    const handleConfirmation = (command, event) => {
+      if (command === 'event' && event.type === 'new_location') {
+        if (event.data.indexOf('#success') === 0) {
+          setSteps(2);
+          setShowModal(true);
+          setMessage('Your transaction was successful!');
+        } else {
+          setShowModal(true);
+          setMessage('Your transaction failed!');
+        }
+        return false;
+      }
+    }
+
+    window.PayWithMyBank.addPanelListener(handleConfirmation);
+
+    return () => {
+      window.PayWithMyBank.removePanelListener(handleConfirmation);
+    }
+  }, [setSteps]);
+
+  const handleModal = ({ target, currentTarget }) => {
+    if (target === currentTarget) setShowModal(!showModal);
+  }
   
   React.useEffect(() => {
     setBuying(true);
@@ -74,6 +64,11 @@ const Checkout = () => {
 
   return (
     <SectionCart>
+      <Helmet>
+        <title>Sneakers | Checkout</title>
+        <meta name='description' content='pay your sneakers here using any payment method you like the most'/>
+      </Helmet>
+      {showModal && <Modal text={message} onClick={handleModal}/>};
       <BreadCrumbs ref={BreadCrumbsRef} />
       <Photo />
       <Payment />
