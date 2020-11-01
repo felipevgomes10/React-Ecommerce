@@ -3,23 +3,42 @@ import { Container, Bar, ButtonBar } from './SearchBarStyles'
 import { ReactComponent as SearchButton } from '../../Assets/search.svg'
 import { ProductsContext } from '../../ProductsContext'
 
-const SearchBar = ({ type, id, placeholder, setSearched, searched }) => {
+const SearchBar = ({ type, id, placeholder, setSearched, searched, setFilter }) => {
 
-  const [value, setValue] = React.useState('');
-  const { products, setProducts } = React.useContext(ProductsContext);
+  const { products } = React.useContext(ProductsContext);
+  const barRef = React.useRef();
 
-  const handleChange = ({ target }) => setValue(target.value);
+  const handleSearch = React.useCallback(() => {
+    const word = barRef.current.value
+    const filteredProduct = products.filter(({ color, price }) => {
+      return color.includes(word) || price.replace(/\.\d+/g, '').includes(word);
+    });
+    setFilter(filteredProduct);
+    setSearched(true);
+  }, [products, setFilter, setSearched]);
 
   const handleClick = () => {
-    const filteredProduct = products.filter(({ price, color }) => {
-      return value === price || value === color;
-    });
-    setProducts(filteredProduct);
-    setSearched(true);
+    handleSearch();
   }
 
   React.useEffect(() => {
-    if (searched === false) setValue('');
+
+    const handleKeyPress = ({ key }) => {
+      if ((key === 'Enter') && (barRef.current.value.length !== 0)) {
+        handleSearch();
+      }
+    }
+
+    window.addEventListener('keypress', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keypress', handleKeyPress);
+    }
+
+  }, [handleSearch]);
+
+  React.useEffect(() => {
+    if (searched === false) barRef.current.value = '';
   }, [searched]);
 
   return (
@@ -29,9 +48,8 @@ const SearchBar = ({ type, id, placeholder, setSearched, searched }) => {
         type={type} 
         id={id}
         name={id} 
-        placeholder={placeholder} 
-        value={value} 
-        onChange={handleChange}
+        placeholder={placeholder}
+        ref={barRef}
       />
     </Container>
   )
