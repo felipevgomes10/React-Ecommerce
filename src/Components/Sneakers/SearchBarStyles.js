@@ -23,7 +23,6 @@ export const Bar = styled.input`
   background: transparent;
   flex: 1;
   margin-right: 4.5rem;
-  text-transform: capitalize;
   padding: 0 2rem 0 2rem;
 
   &::-webkit-input-placeholder {

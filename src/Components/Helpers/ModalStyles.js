@@ -23,8 +23,8 @@ export const ModalWarning = styled.div`
   height: 17rem;
   width: 34rem;
   border: 1px solid #eee;
-  border-radius: .3rem;
-  background: white;
+  border-radius: 1.3rem;
+  background: #6B8067;
   box-shadow: 0 0 0 2px #333;
   overflow: hidden;
   display: flex;
@@ -36,13 +36,21 @@ export const ModalWarning = styled.div`
   animation: ${slide} .4s forwards;
 
   & div {
-    height: 20%;
+    height: 24%;
     width: 100%;
-    background: #6B8067;
+    background: #000;
+    margin-top: 2rem;
   }
 `
 export const ModalText = styled.p`
-  font-size: 2rem;
-  margin-top: 4.8rem;
-  color: #333;
+    font-size: 2rem;
+    margin-top: 1.8rem;
+    border-radius: 0.2rem;
+    color: #333;
+    background: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 92%;
+    height: 3.5rem;
 `

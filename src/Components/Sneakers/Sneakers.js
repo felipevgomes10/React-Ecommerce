@@ -24,6 +24,7 @@ const Sneakers = () => {
   const [searched, setSearched] = React.useState(false);
   const match = useMedia('(max-width: 900px)');
   const { request } = useFetch();
+  const [filter, setFilter] = React.useState(null);
 
   React.useEffect(() => {
     setBuying(false);
@@ -33,8 +34,15 @@ const Sneakers = () => {
 
   const handleClick = async () => {
     const { response, json } = await request(productsUrl);
-    if (response.ok) setProducts(json.results);
+    const sneakers = json.results.map((result) => {
+      return {
+        ...result,
+        color: result.color.toLowerCase(),
+      }
+    });
+    if (response.ok) setProducts(sneakers);
     setSearched(false);
+    setFilter(null);
   }
 
   return (
@@ -55,6 +63,7 @@ const Sneakers = () => {
         Show All
       </Button>}
       <SearchBar
+        setFilter={setFilter}
         searched={searched}
         type='text' 
         id='searchBar' 
@@ -62,8 +71,18 @@ const Sneakers = () => {
         setSearched={setSearched}
       />
       <ul>
-        {loading ? <Loading /> : (
-          products.map(({ id, thumbnailURL, description, currency, price}) => {
+        {loading && <Loading />}
+        {filter ? filter.map(({ id, thumbnailURL, description, currency, price }) => {
+          return <SkeakersListItem 
+          key={id}
+          id={id}
+          thumb={thumbnailURL}
+          description={description}
+          currency={currency}
+          price={price}
+        />
+        }) : (
+          products.map(({ id, thumbnailURL, description, currency, price }) => {
             return <SkeakersListItem 
                       key={id}
                       id={id}
@@ -72,8 +91,8 @@ const Sneakers = () => {
                       currency={currency}
                       price={price}
                     />
-          }
-        ))}
+          })
+        )}
       </ul>
     </Section>
   )

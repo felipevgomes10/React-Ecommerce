@@ -6,6 +6,7 @@ import { ProductsStorage } from './ProductsContext'
 import Header from './Components/Header'
 import Sneakers from './Components/Sneakers/Sneakers'
 import Checkout from './Components/Checkout/Checkout'
+import { Helmet } from 'react-helmet'
 
 const App = () => {
 
@@ -15,6 +16,9 @@ const App = () => {
       <Container>
         <ProductsStorage>
           <BrowserRouter>
+            <Helmet>
+              <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
+            </Helmet>
             <Header />
             <Routes>
               <Route path='/' element={<Sneakers />} />

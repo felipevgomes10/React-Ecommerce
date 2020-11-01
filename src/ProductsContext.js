@@ -1,14 +1,14 @@
 import React from 'react'
+import useFetch from './Components/Hooks/useFetch'
 
 export const ProductsContext = React.createContext();
 
 export const ProductsStorage = ({ children }) => {
 
   const [products, setProducts] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
   const [buying, setBuying] = React.useState(false);
   const [steps, setSteps] = React.useState(0);
+  const { request, error, loading } = useFetch();
   const [order, setOrder] = React.useState({
     name: '',
     quantity: '',
@@ -25,25 +25,19 @@ export const ProductsStorage = ({ children }) => {
 
     const fetchProductsFunction = async () => {
 
-      let response;
-      let json;
-
-      try {
-        setError(null);
-        setLoading(true);
-        response = await fetch(productsUrl);
-        if (!response.ok) throw new Error('Sorry, there has been a mistake');
-        json = await response.json();
-      } catch (err) {
-        json = null;
-        setError(err.message);
-      } finally {
-        setLoading(false);
-        setProducts(json.results);
+      const { response, json } = await request(productsUrl);
+      const sneakers = json.results.map((result) => {
+        return {
+          ...result,
+          color: result.color.toLowerCase(),
+        }
+      });
+      if (response.ok) setProducts(sneakers);
       }
-    }
+      
     fetchProductsFunction();
-  }, []);
+
+  }, [request]);
 
   return (
     <ProductsContext.Provider value={{products, setProducts, loading, error, buying, setBuying, order, setOrder, steps, setSteps}}>
