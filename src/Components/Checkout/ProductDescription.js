@@ -1,15 +1,19 @@
 import React from 'react'
-import { SectionPhoto } from './PhotoStyles'
+import { SectionPhoto } from './ProductDescriptionStyles'
 import { useParams } from 'react-router-dom';
 import { ProductsContext } from '../../ProductsContext'
 import Image from '../Helpers/Image';
 import Loading from '../Helpers/Loading';
+import useMedia from '../Hooks/useMedia';
+import ResponsiveCheckout from '../responsive/ResponsiveCheckout';
+import ResponsiveSumary from '../responsive/ResponsiveSumary';
 
-const Photo = () => {
+const ProductDescription = () => {
 
   const { id } = useParams();
-  const { products, loading, order, setOrder } = React.useContext(ProductsContext);
+  const { products, loading, order, setOrder, steps } = React.useContext(ProductsContext);
   const [product, setProduct] = React.useState(null);
+  const media = useMedia('(max-width: 25em)');
 
   React.useEffect(() => {
     
@@ -30,7 +34,13 @@ const Photo = () => {
   React.useEffect(() => {
 
     if (product) {
-      const { description, color, id, price } = product;
+      const { 
+        description, 
+        color, 
+        id, 
+        price, 
+        maxresURL
+      } = product;
 
       setOrder((order) => {
         return {
@@ -39,6 +49,7 @@ const Photo = () => {
           color: color, 
           id: id,
           price: (price * order.quantity).toFixed(2),
+          img: maxresURL,
         }
       });
     }
@@ -51,6 +62,13 @@ const Photo = () => {
   
   if (!product) return null
   if (loading) return <Loading />
+  if (media && (steps === 2)) return <ResponsiveSumary />
+  if (media) return (
+    <ResponsiveCheckout 
+      productPhoto={product.maxresURL}
+      productDescription={product.description}
+    />
+  )
   return (
     <SectionPhoto>
       <Image alt={product.description} src={product.maxresURL} />
@@ -58,4 +76,4 @@ const Photo = () => {
   )
 }
 
-export default Photo
+export default ProductDescription

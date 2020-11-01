@@ -1,11 +1,12 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import { SectionCart } from './CheckoutStyles'
 import { ProductsContext } from '../../ProductsContext'
 import BreadCrumbs from '../Helpers/BreadCrumbs'
 import Payment from './Payment'
-import Photo from './Photo'
+import ProductDescription from './ProductDescription'
 import Modal from '../Helpers/Modal'
-import { Helmet } from 'react-helmet'
+import useMedia from '../Hooks/useMedia'
 
 const Checkout = () => {
 
@@ -13,6 +14,11 @@ const Checkout = () => {
   const BreadCrumbsRef = React.createRef();
   const [showModal, setShowModal] = React.useState(false);
   const [message, setMessage] = React.useState('');
+  const media = useMedia('(max-width: 25em)');
+
+  React.useEffect(() => {
+    setSteps(1);
+  }, [setSteps]);
 
   React.useEffect(() => {
 
@@ -48,21 +54,25 @@ const Checkout = () => {
   }, [setBuying]);
 
   React.useEffect(() => {
-    const { current } = BreadCrumbsRef;
-    
-    if (steps < 2) {
-      current.children[0].style.background = '#61CB46';
-      current.children[2].style.background = '#61CB46';
-      current.children[3].style.background = '#E8E8E8';
-      current.children[4].style.width = '30%';
-    }
-    
-    if (steps > 1) {
-      current.children[3].style.background = '#61CB46';
-      current.children[4].style.width = '60%';
-    }
 
-  }, [steps, BreadCrumbsRef]);
+    if (!media) {
+      const { current } = BreadCrumbsRef;
+      
+      if (steps < 2) {
+        current.children[0].style.background = '#61CB46';
+        current.children[2].style.background = '#61CB46';
+        current.children[3].style.background = '#E8E8E8';
+        current.children[4].style.width = '30%';
+      }
+      
+      if (steps > 1) {
+        [...current.children].forEach((child, index) => {
+          if (index !== 1) child.style.background = '#61CB46';
+        });
+        current.children[4].style.width = '60%';
+      }
+    }
+  }, [steps, BreadCrumbsRef, media]);
 
   return (
     <SectionCart>
@@ -70,9 +80,9 @@ const Checkout = () => {
         <title>Sneakers | Checkout</title>
         <meta name='description' content='pay your sneakers here using any payment method you like the most'/>
       </Helmet>
-      {showModal && <Modal text={message} onClick={handleModal}/>};
-      <BreadCrumbs ref={BreadCrumbsRef} />
-      <Photo />
+      {showModal && <Modal text={message} onClick={handleModal}/>}
+      {!media && <BreadCrumbs ref={BreadCrumbsRef} />}
+      <ProductDescription />
       <Payment />
     </SectionCart>
   )

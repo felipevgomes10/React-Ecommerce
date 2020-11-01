@@ -11,6 +11,10 @@ export const Container = styled.div`
   transform: scale(.95);
   transition: .2s;
 
+  @media (max-width: 25em) {
+    margin-top: 20px;
+  }
+
   &:focus-within {
     transform: scale(1);
   }
@@ -24,6 +28,10 @@ export const Bar = styled.input`
   flex: 1;
   margin-right: 4.5rem;
   padding: 0 2rem 0 2rem;
+
+  @media (max-width: 25em) {
+    margin-right: 1.5rem;
+  }
 
   &::-webkit-input-placeholder {
     text-align: center;

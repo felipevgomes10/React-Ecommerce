@@ -11,7 +11,7 @@ const Image = ({ alt, ...props }) => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper className='skeleton'>
       {skeleton && <Div></Div>}
       <Img onLoad={handleLoad} alt={alt} {...props}/>
     </Wrapper>

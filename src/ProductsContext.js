@@ -17,6 +17,7 @@ export const ProductsStorage = ({ children }) => {
     id: '',
     price: '',
     method: '',
+    img: '',
   });
 
   const productsUrl = 'https://voliveira.s3-sa-east-1.amazonaws.com/sneakers/index.json';

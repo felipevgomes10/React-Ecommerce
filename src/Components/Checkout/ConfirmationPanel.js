@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import {
   ConfirmationWrapper, 
   InfoContainer, 
@@ -8,12 +9,15 @@ import {
 import { ProductsContext } from '../../ProductsContext'
 import Bank from '../../Assets/bank.png'
 import Button from '../Helpers/Button'
-import { Helmet } from 'react-helmet'
+import useMedia from '../Hooks/useMedia'
+import ResponsiveConfirmationPanel from '../responsive/ResponsiveConfirmationPanel'
 
 const ConfirmationPanel = () => {
 
   const { order } = React.useContext(ProductsContext);
+  const media = useMedia('(max-width: 25em)');
 
+  if (media) return <ResponsiveConfirmationPanel />
   return (
     <ConfirmationWrapper className='confirmationPanel'>
       <Helmet>

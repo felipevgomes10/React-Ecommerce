@@ -10,12 +10,16 @@ import {
 import { ProductsContext } from '../../ProductsContext'
 import ConfirmationPanel from './ConfirmationPanel'
 import PaymentPanel from './PaymentPanel'
+import useMedia from '../Hooks/useMedia'
+import ResponsivePaymentPanel from '../responsive/ResponsivePaymentPanel'
 
 const Payment = () => {
 
   const { order, steps } = React.useContext(ProductsContext);
+  const media = useMedia('(max-width: 25em)');
 
   if (steps === 2) return <ConfirmationPanel />
+  if (media) return <ResponsivePaymentPanel />
   return (
     <PaymentWrapper>
       <Container rows='1 / 2' columns='1 / 2'>
