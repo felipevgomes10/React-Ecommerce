@@ -18,7 +18,8 @@ const SearchBar = ({ type, id, placeholder, setSearched, searched, setFilter }) 
   }, [products, setFilter, setSearched]);
 
   const handleClick = () => {
-    handleSearch();
+    if (barRef.current.value.length !== 0)
+      handleSearch();
   }
 
   React.useEffect(() => {

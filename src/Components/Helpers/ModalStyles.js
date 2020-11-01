@@ -47,7 +47,7 @@ export const ModalText = styled.p`
     margin-top: 1.8rem;
     border-radius: 0.2rem;
     color: #333;
-    background: #eee;
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
