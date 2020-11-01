@@ -5,6 +5,11 @@ export const HeaderContainer = styled.header`
   grid-column: full-start / full-end;
   background: #F1F1F1;
   padding: 2rem;
+
+  @media (max-width: 25rem) {
+    background: white;
+    padding: 1rem;
+  }
 `
 export const Nav = styled.nav`
   height: 100%;
@@ -13,6 +18,10 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  @media (max-width: 25rem) {
+    justify-content: space-between;
+  }
 `
 export const Text = styled.h1`
   font-size: 2.61rem;
@@ -23,7 +32,7 @@ export const Text = styled.h1`
   word-break: break-word;
 
   @media (max-width: 31.25em) {
-    margin-right: 5rem;
+    margin-right: 9rem;
   }
 `
 export const UserPhoto = styled.div`

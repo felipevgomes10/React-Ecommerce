@@ -4,12 +4,14 @@ import UserImg from '../Assets/user.jpg'
 import { useNavigate } from 'react-router-dom'
 import { ProductsContext } from '../ProductsContext'
 import { ReactComponent as Arrow } from '../Assets/arrow.svg'
+import useMedia from './Hooks/useMedia'
 
 const Header = () => {
 
   const { buying, steps, setSteps, setOrder } = React.useContext(ProductsContext);
   const navigate = useNavigate();
   const [headerText, setHeaderText] = React.useState(null);
+  const media = useMedia('(max-width: 25em)');
 
   React.useEffect(() => {
     
@@ -47,7 +49,7 @@ const Header = () => {
     <HeaderContainer>
       <Nav>
         <Button onClick={handleNavigation} buying={buying}><Arrow /> Back</Button>
-        <Text>{headerText}</Text>
+        {!media && <Text>{headerText}</Text>}
         <UserPhoto img={UserImg} />
       </Nav>
     </HeaderContainer>

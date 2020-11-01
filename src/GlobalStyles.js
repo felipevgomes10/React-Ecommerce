@@ -30,7 +30,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
     font-size: 1.6rem;
     font-weight: 400;
-    min-height: 100vh;
+    min-height: calc(100vh + 5px);
   }
 
   h1, h2, h3, h4, p {

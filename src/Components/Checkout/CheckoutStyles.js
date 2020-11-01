@@ -11,7 +11,7 @@ export const SectionCart = styled.section`
 
   @media (max-width: 75em) {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, min-content);
+    grid-template-rows: repeat(4, min-content);
   }
 
   & > .breadCrumbs {

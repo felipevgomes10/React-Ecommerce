@@ -16,7 +16,12 @@ export const Section = styled.section`
 
   & > button {
     position: absolute;
-    top: 252px;
-    left: 146px;
+    top: 104px;
+    left: 61px;
+
+    @media (max-width: 25em) {
+      top: 153px;
+      left: 34px;
+    }
   }
 `

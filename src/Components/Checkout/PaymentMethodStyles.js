@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const MethodOption = styled.button` 
   background: #FFFFFF;
@@ -15,6 +15,38 @@ export const MethodOption = styled.button`
   padding: 3.1rem;
   cursor: pointer;
 
+  ${props => props.save && css`
+    & {
+      position: relative
+    }
+
+    @media (max-width: 25em) {
+      padding: 1.5rem 1.5rem 3rem;
+    }
+
+    &::after {
+      content: 'save $10';
+      display: block;
+      font-weight: bold;
+      font-size: 9.77px;
+      line-height: 13px;
+      text-align: center;
+      color: #9E7D27;
+      background: #FFCC00;
+      border-radius: 2.079px;
+      padding: .5rem 1rem;
+      position: absolute;
+      top: -6px;
+
+      @media (max-width: 25em) {
+        border-radius: 5px;
+        top: 27px;
+        left: 9px;
+        line-height: 8px;
+      }
+    }
+  `}
+
   &:focus,
   &:hover {
     border: 1px solid #5DAC50;
@@ -22,12 +54,14 @@ export const MethodOption = styled.button`
   }
 
   @media (max-width: 25em) {
-    
-    padding: 1.5rem;
 
     & img {
       margin-left: .5rem;
       max-width: 80%;
+
+      @media (max-width: 25em) {
+        max-width: 60%;
+      }
     }
   }
 `

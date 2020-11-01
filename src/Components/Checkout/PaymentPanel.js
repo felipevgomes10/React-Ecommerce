@@ -7,11 +7,13 @@ import ApplePay from '../../Assets/apple-pay.png'
 import Button from '../Helpers/Button'
 import { ProductsContext } from '../../ProductsContext'
 import { establishConnection } from './establishConnection'
+import useMedia from '../Hooks/useMedia'
 
 const PaymentPanel = () => {
 
   const [paymentMethod, setPaymentMethod] = React.useState('Online Banking');
   const { order, setOrder } = React.useContext(ProductsContext);
+  const media = useMedia('(max-width: 25em)');
 
   React.useEffect(() => {
     setOrder((order) => {
@@ -33,8 +35,9 @@ const PaymentPanel = () => {
   return (
     <>
      <Container rows='2 / 3' columns='1 / -1'>
-        <MethodHeader>Select your payment method</MethodHeader>
+        {!media && <MethodHeader>Select your payment method</MethodHeader>}
         <PaymentMethod
+          save
           onFocus={choosePayment}
           onClick={choosePayment} 
           data='Online Banking' 
