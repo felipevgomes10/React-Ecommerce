@@ -3,6 +3,9 @@ A e-commerce website made for the Trustly challenge.
 <br/>
 Um site e-commerce feito para o desafio da Trustly.
 
+# Acesse aqui / Access here
+https://trustly-sneakers-aa94f.web.app/
+
 # Dependências / Dependencies
 
 For you to run the project correctly you need to install the following dependencies:
