@@ -13,7 +13,7 @@ const ProductDescription = () => {
   const { id } = useParams();
   const { products, loading, order, setOrder, steps } = React.useContext(ProductsContext);
   const [product, setProduct] = React.useState(null);
-  const media = useMedia('(max-width: 25em)');
+  const media = useMedia('(max-width: 31.25em)');
 
   React.useEffect(() => {
     

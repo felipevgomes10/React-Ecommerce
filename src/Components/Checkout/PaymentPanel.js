@@ -13,7 +13,7 @@ const PaymentPanel = () => {
 
   const [paymentMethod, setPaymentMethod] = React.useState('Online Banking');
   const { order, setOrder } = React.useContext(ProductsContext);
-  const media = useMedia('(max-width: 25em)');
+  const media = useMedia('(max-width: 31.25em)');
 
   React.useEffect(() => {
     setOrder((order) => {

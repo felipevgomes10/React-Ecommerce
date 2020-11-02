@@ -16,7 +16,7 @@ import ResponsivePaymentPanel from '../responsive/ResponsivePaymentPanel'
 const Payment = () => {
 
   const { order, steps } = React.useContext(ProductsContext);
-  const media = useMedia('(max-width: 25em)');
+  const media = useMedia('(max-width: 31.25em)');
 
   if (steps === 2) return <ConfirmationPanel />
   if (media) return <ResponsivePaymentPanel />
