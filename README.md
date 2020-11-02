@@ -36,8 +36,8 @@ npm start
 
 # Mobile version / Versão Mobile
 
-The mobile version of the project is fully implemented and takes effect when the screen is 400px wide or less.
+The mobile version of the project is fully implemented and takes effect when the screen is 500px wide or less.
 <br/>
-A versão mobile do projeto está totalmente implementada e começa a funcionar quando a tela tem 400px de largura ou menos.
+A versão mobile do projeto está totalmente implementada e começa a funcionar quando a tela tem 500px de largura ou menos.
 
 
