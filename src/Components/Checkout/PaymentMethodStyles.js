@@ -20,7 +20,7 @@ export const MethodOption = styled.button`
       position: relative
     }
 
-    @media (max-width: 31.25em) {
+    @media (max-width: 25em) {
       padding: 1.5rem 1.5rem 3rem;
     }
 
@@ -38,7 +38,7 @@ export const MethodOption = styled.button`
       position: absolute;
       top: -6px;
 
-      @media (max-width: 31.25em) {
+      @media (max-width: 25em) {
         border-radius: 5px;
         top: 27px;
         left: 9px;
@@ -53,7 +53,7 @@ export const MethodOption = styled.button`
     outline: none;
   }
 
-  @media (max-width: 31.25em) {
+  @media (max-width: 25em) {
 
     & img {
       margin-left: .5rem;
