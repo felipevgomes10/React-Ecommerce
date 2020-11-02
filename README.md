@@ -17,7 +17,7 @@ npm install --save react-helmet
 
 You also need to download all the react-create-app dependencies:
 <br/>
-Você também precisa fazer o download de todas as depedências do react-create-app:
+Você também precisa fazer o download de todas as dependências do react-create-app:
 
 ```
 npm install
