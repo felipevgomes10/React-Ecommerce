@@ -11,7 +11,7 @@ const Header = () => {
   const { buying, steps, setSteps, setOrder } = React.useContext(ProductsContext);
   const navigate = useNavigate();
   const [headerText, setHeaderText] = React.useState(null);
-  const media = useMedia('(max-width: 25em)');
+  const media = useMedia('(max-width: 31.25em)');
 
   React.useEffect(() => {
     

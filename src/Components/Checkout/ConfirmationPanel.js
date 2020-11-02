@@ -15,7 +15,7 @@ import ResponsiveConfirmationPanel from '../responsive/ResponsiveConfirmationPan
 const ConfirmationPanel = () => {
 
   const { order } = React.useContext(ProductsContext);
-  const media = useMedia('(max-width: 25em)');
+  const media = useMedia('(max-width: 31.25em)');
 
   if (media) return <ResponsiveConfirmationPanel />
   return (

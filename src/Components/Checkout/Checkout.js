@@ -14,7 +14,7 @@ const Checkout = () => {
   const BreadCrumbsRef = React.createRef();
   const [showModal, setShowModal] = React.useState(false);
   const [message, setMessage] = React.useState('');
-  const media = useMedia('(max-width: 25em)');
+  const media = useMedia('(max-width: 31.25em)');
 
   React.useEffect(() => {
     setSteps(1);

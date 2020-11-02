@@ -9,7 +9,7 @@ const SearchBar = ({ type, id, placeholder, setSearched, searched, setFilter }) 
   const barRef = React.useRef();
 
   const handleSearch = React.useCallback(() => {
-    const word = barRef.current.value
+    const word = barRef.current.value.toLowerCase();
     const filteredProduct = products.filter(({ color, price }) => {
       return color.includes(word) || price.replace(/\.\d+/g, '').includes(word);
     });
