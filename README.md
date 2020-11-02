@@ -31,4 +31,10 @@ Agora para abrir o projeto você precisar abrir o terminal na pasta do projeto e
 npm start
 ```
 
+# Mobile version / Versão Mobile
+
+The mobile version of the project is fully implemented and takes effect when the screen is 400px wide or less.
+<br/>
+A versão mobile do projeto está totalmente implementada e começa a funcionar quando a tela tem 400px de largura ou menos.
+
 
