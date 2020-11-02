@@ -32,8 +32,8 @@ const ResponsiveCheckout = ({ productPhoto, productDescription }) => {
       <Title>Checkout</Title>
       <Wrapper margin='2rem 1.4rem 0rem' ref={WrapperRef}>
         <div className='colapse'>
-        <Colapse onClick={handleColapse}>{colapse ? <Icon plus/> : <Icon />}</Colapse>
-      {colapse && <OrderText>Order</OrderText>}
+          <Colapse onClick={handleColapse}>{colapse ? <Icon plus/> : <Icon />}</Colapse>
+          {colapse && <OrderText>Order</OrderText>}
         </div>
         <Image 
           src={productPhoto} 
