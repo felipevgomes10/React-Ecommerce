@@ -10,13 +10,20 @@ export const Wrapper = styled.div`
   height: 244px;
   margin: ${({ margin }) => margin ? margin : 'initial'};
   transition: .3s;
+  position: relative;
 
+  & .skeleton {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    margin: 3rem 2rem;
+  }
+
+  & .skeleton,
   & img {
     border-radius: 9.02222px;
     width: 92px;
     height: 106px;
     object-fit: cover;
-    margin: 3rem 2rem;
   }
 `
 export const Title = styled.h1`
@@ -40,6 +47,11 @@ export const TextWrapper = styled(Wrapper)`
     font-size: 13px;
     color: #A5A5A5;
   }
+
+  & .colapse {
+    grid-column: 1 / -1;
+    grid-row: 1 / 3;
+  }
 `
 export const Colapse = styled.button`
   display: flex;
@@ -51,10 +63,11 @@ export const Colapse = styled.button`
   outline: none;
   padding: 0;
   border-radius: 50%;
-  position: absolute;
-  top: 153px;
-  right: 23px;
   background: #A5A5A5;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  z-index: 99;
   cursor: pointer;
 `
 export const Icon = styled.span`
@@ -79,15 +92,13 @@ export const Icon = styled.span`
         position: absolute;
         top: -3px;
         left: 2.5px;
-
-
       }
 
   `}
 `
 export const OrderText = styled.p`
   position: absolute;
-  top: 152px;
-  left: 18px;
+  top: 8px;
+  left: 12px;
   font-size: 18px;
 `

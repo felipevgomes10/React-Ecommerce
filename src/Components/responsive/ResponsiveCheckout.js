@@ -16,8 +16,8 @@ const ResponsiveCheckout = ({ productPhoto, productDescription }) => {
   React.useEffect(() => {
     if (colapse) {
       WrapperRef.current.style.height = '40px';
-      [...WrapperRef.current.children].forEach(child => {
-        child.style.display = 'none';
+      [...WrapperRef.current.children].forEach((child, index) => {
+        if (index !== 0) child.style.display = 'none';
       });
     } else {
       WrapperRef.current.removeAttribute('style');
@@ -30,14 +30,16 @@ const ResponsiveCheckout = ({ productPhoto, productDescription }) => {
   return (
     <>
       <Title>Checkout</Title>
-      <Colapse onClick={handleColapse}>{colapse ? <Icon plus/> : <Icon />}</Colapse>
-      {colapse && <OrderText>Order</OrderText>}
       <Wrapper margin='2rem 1.4rem 0rem' ref={WrapperRef}>
+        <div className='colapse'>
+        <Colapse onClick={handleColapse}>{colapse ? <Icon plus/> : <Icon />}</Colapse>
+      {colapse && <OrderText>Order</OrderText>}
+        </div>
         <Image 
           src={productPhoto} 
           alt={productDescription}
         />
-        <TextWrapper columns='2 / 3' margin='3rem'>
+        <TextWrapper columns='2 / 3' rows='1 / 2' margin='3rem'>
           <p>{order.name}</p>
           <small>
             X {order.quantity} {order.color} Size {order.size}

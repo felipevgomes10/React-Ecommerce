@@ -6,7 +6,7 @@ export const HeaderContainer = styled.header`
   background: #F1F1F1;
   padding: 2rem;
 
-  @media (max-width: 25rem) {
+  @media (max-width: 31.25rem) {
     background: white;
     padding: 1rem;
   }
@@ -19,7 +19,7 @@ export const Nav = styled.nav`
   justify-content: space-around;
   align-items: center;
 
-  @media (max-width: 25rem) {
+  @media (max-width: 31.25rem) {
     justify-content: space-between;
   }
 `
