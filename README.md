@@ -1,7 +1,4 @@
-# Trustly
-A e-commerce website made for the Trustly challenge.
-<br/>
-Um site e-commerce feito para o desafio da Trustly.
+# React-Ecommerce
 
 # Acesse aqui / Access here
 https://trustly-sneakers-aa94f.web.app/
